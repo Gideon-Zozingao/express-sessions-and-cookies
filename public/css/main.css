@@ -14,6 +14,8 @@ list-style-type: none;
   flex-direction: row;
 }
 .nav{
+  width: 100%;
+  
 padding: 4px;
 }
 .nav a{
@@ -82,3 +84,15 @@ color: #D3D3D3;
 .text-danger{
   color: #DC143C;
 }
+footer{
+  position: fixed;
+  bottom: 0;
+}
+.footer{
+  padding: 4px;
+  left: 0;
+  right: 0;
+  background-color: #808080;
+}
+.copyright{}
+.copyright-tex{}
