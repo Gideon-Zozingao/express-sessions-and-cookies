@@ -1,4 +1,8 @@
+html{
+  box-sizing: border-box;
+}
 body{
+
   margin: 0;
   background-color:#fff;
   font-size: 25px;
@@ -14,8 +18,8 @@ list-style-type: none;
   flex-direction: row;
 }
 .nav{
-  width: 100%;
-  
+
+
 padding: 4px;
 }
 .nav a{
@@ -94,5 +98,18 @@ footer{
   right: 0;
   background-color: #808080;
 }
-.copyright{}
-.copyright-tex{}
+.copyright{
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: rgba(0,0,0,0.9);
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}
+.copyright-text{
+  font-size: 1rem;
+  font-weight: 200;
+}
