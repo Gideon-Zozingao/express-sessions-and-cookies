@@ -23,7 +23,7 @@ router.post('/create',(req,res)=>{
     console.log(fake_db);
     res.redirect('/')
   }else{
-  res.render('pages/errors',{title:"Error",err_message:"Registration was Not Successful, Required are fields Empty"})  
+  res.render('pages/errors',{title:"Error",err_message:"Registration was Not Successful, Required are fields Empty",session:fake_db.sessions[req.cookies.SID]})
   }
 
 })
@@ -40,9 +40,9 @@ router.post('/login',(req,res)=>{
     //created cookies that holds the UUID (session id)
 res.cookie("SID",id,{expires:new Date(Date.now()+900000),httpOnly:true})
     console.log(fake_db.sessions[id].user.username);
-    res.render("pages/members",{title:"Members Home",person:fake_db.users.username});
+    res.render("pages/members",{title:"Members Home",person:fake_db.sessions[id].user.username,session:fake_db.sessions[id]});
   }else{
-    res.render("pages/errors",{title:"Error",err_message:"Invalid credentials"})
+    res.render("pages/errors",{title:"Error",err_message:"Invalid credentials",session:fake_db.sessions[req.cookies.SID]})
   }
 })
 
@@ -73,10 +73,10 @@ let id=req.cookies.SID;
 let session=fake_db.sessions[id];
 //if session is undefined than this will be false
 if(session){
-  res.render('pages/members',{title:"Members Home",person:fake_db.sessions[id].user.username});
+  res.render('pages/members',{title:"Members Home",person:fake_db.sessions[id].user.username,session:fake_db.sessions[id]});
 
 }else{
-  res.render('pages/errors',{title:"Error",err_message:"You have  not loged in"});
+  res.render('pages/errors',{title:"Error",err_message:"You have  not loged in",session:fake_db.sessions[id]});
 
 }
 
