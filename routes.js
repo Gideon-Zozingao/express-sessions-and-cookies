@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 const matchCredentials = require('./utils.js')
 const fake_db=require("./fake_db")
 router.get('/',(req,res)=>{
-  res.render('pages/home');
+  res.render('pages/home',{title:"Home"});
 })
 
 //create a user acount
@@ -34,9 +34,9 @@ router.post('/login',(req,res)=>{
     //created cookies that holds the UUID (session id)
 res.cookie("SID",id,{expires:new Date(Date.now()+900000),httpOnly:true})
     console.log(fake_db.sessions[id].user.username);
-    res.render("pages/members",{login:true,person:fake_db.sessions[id].user.username});
+    res.render("pages/members",{title:"Members Home",person:fake_db.users.username});
   }else{
-    res.render("pages/errors")
+    res.render("pages/errors",{title:"Error",err_message:"Invalid credentials"})
   }
 })
 
@@ -55,10 +55,10 @@ let id=req.cookies.SID;
 let session=fake_db.sessions[id];
 //if session is undefined than this will be false
 if(session){
-  res.render('pages/members',{person:fake_db.sessions[id].user.username});
+  res.render('pages/members',{title:"Members Home",person:fake_db.sessions[id].user.username});
 
 }else{
-  res.render('pages/errors');
+  res.render('pages/errors',{title:"Error",err_message:"You have  not loged in"});
 
 }
 
@@ -66,11 +66,11 @@ if(session){
 
 //if something goes wrong,you get sent here
 router.get('/errors',(req,res)=>{
-  res.render('pages/render');
+  res.render('pages/errors',{title:"Error"});
 })
 //404 handling
 router.get("*",(req,res)=>{
-  res.render("pages/errors");
+  res.render("pages/errors",{title:"Error",err_message:"404"});
 })
 
 module.exports=router
