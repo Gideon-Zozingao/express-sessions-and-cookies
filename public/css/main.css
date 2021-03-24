@@ -64,3 +64,21 @@ cursor: pointer;
 .btn-block{
   width: 100%;
     }
+.text-lg{
+font-size: 4rem;
+font-weight: 200;
+}
+.text-center{
+  text-align: center;
+
+}
+.text-muted{
+color: #D3D3D3;
+}
+.sub-title{
+  font-size: 2rem;
+  font-weight: 200;
+}
+.text-danger{
+  color: #DC143C;
+}

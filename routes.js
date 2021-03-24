@@ -14,13 +14,18 @@ router.get('/',(req,res)=>{
 //create a user acount
 router.post('/create',(req,res)=>{
   let body=req.body;
-  let user={
-    username:body.username,
-    password:body.password
+  if(body.username!==""&&body.password!==""){
+    let user={
+      username:body.username,
+      password:body.password
+    }
+    fake_db.users[user.username]=user
+    console.log(fake_db);
+    res.redirect('/')
+  }else{
+  res.render('pages/errors',{title:"Reg>>Error",err_message:"Registration was Not Successful, Required are fields Empty"})  
   }
-  fake_db.users[user.username]=user
-  console.log(fake_db);
-  res.redirect('/')
+
 })
 
 //login
