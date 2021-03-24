@@ -1,6 +1,28 @@
 body{
-  background-color: grey;
+  background-color:#fff;
   font-size: 25px;
   font-weight: 200;
   font-family: 'Poppins', sans-serif;
+}
+
+.list-unstyeld{
+list-style-type: none;
+}
+.list-inline{
+  display: flex;
+  flex-direction: row;
+}
+.nav{
+padding: 4px;
+}
+.nav a{
+  margin: 1.5rem;
+}
+
+.nav-inverse{
+  background-color: grey;
+}
+.nav-link{
+text-decoration: none;
+cursor: pointer;
 }

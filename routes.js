@@ -6,8 +6,9 @@ const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const matchCredentials = require('./utils.js')
 const fake_db=require("./fake_db")
+
 router.get('/',(req,res)=>{
-  res.render('pages/home',{title:"Home"});
+  res.render('pages/home',{title:"Home",session:fake_db.sessions[req.cookies.SID]});
 })
 
 //create a user acount
@@ -40,6 +41,18 @@ res.cookie("SID",id,{expires:new Date(Date.now()+900000),httpOnly:true})
   }
 })
 
+
+router.get('/login',(req,res)=>{
+res.render("pages/login",{title:"Login",session:fake_db.sessions[req.cookies.SID]});
+})
+router.get('/register',(req,res)=>{
+res.render("pages/register",{title:"Create Account",session:fake_db.sessions[req.cookies.SID]});
+})
+
+
+
+
+
 router.get('/logout',(req,res)=>{
   let SID=req.cookies.SID;
   delete fake_db.sessions[SID];
@@ -50,7 +63,7 @@ router.get('/logout',(req,res)=>{
   console.log(fake_db.sessions);
 })
 //this is a protected homepage.
-router.get('/supercoolmembersonlypage',(req,res)=>{
+router.get('/profile',(req,res)=>{
 let id=req.cookies.SID;
 let session=fake_db.sessions[id];
 //if session is undefined than this will be false
