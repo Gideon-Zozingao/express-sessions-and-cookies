@@ -23,7 +23,7 @@ router.post('/create',(req,res)=>{
     console.log(fake_db);
     res.redirect('/')
   }else{
-  res.render('pages/errors',{title:"Reg>>Error",err_message:"Registration was Not Successful, Required are fields Empty"})  
+  res.render('pages/errors',{title:"Error",err_message:"Registration was Not Successful, Required are fields Empty"})  
   }
 
 })
